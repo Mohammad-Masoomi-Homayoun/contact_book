@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -15,7 +16,7 @@ public class Main {
                     main.insertContact(scanner);
                     break;
                 case "2":
-                    main.searchContact();
+                    main.searchContact(scanner);
                     break;
                 case "qq":
                     main.printMenu();
@@ -30,8 +31,19 @@ public class Main {
         return input;
     }
 
-    private void searchContact() {
+    private void searchContact(Scanner scanner) {
+        System.out.println(" - Please enter name or number or email: ");
+        String searchParam = scanner.nextLine();
+        List<Contact> result = contactBook.search(searchParam);
 
+        if (result.size() == 0) {
+            System.out.println("There is no record for your search");
+            return;
+        }
+        System.out.println("We found " + result.size() + " results :)");
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println("Result number " + (i+1) + ":\n\t" + result.get(i));
+        }
     }
 
     public void insertContact(Scanner scanner) {
