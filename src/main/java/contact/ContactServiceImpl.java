@@ -1,3 +1,5 @@
+package contact;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -73,7 +75,7 @@ public class ContactServiceImpl implements ContactService{
             return;
         String email = input;
         contactBook.add(new Contact(name, Arrays.asList(phone), Arrays.asList(email)));
-        System.out.println("Contact successfully added.");
+        System.out.println("contact.Contact successfully added.");
     }
 
     private void printBackNote() {

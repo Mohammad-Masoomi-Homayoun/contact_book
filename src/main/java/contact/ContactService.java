@@ -1,5 +1,6 @@
+package contact;
+
 import java.util.List;
-import java.util.Scanner;
 
 public interface ContactService {
 
