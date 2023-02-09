@@ -1,10 +1,15 @@
 import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
+import lombok.Value;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Builder
+@Data
+@ToString
 public class Contact {
 
     private String name;
@@ -18,30 +23,6 @@ public class Contact {
     public Contact(String name, List<String> numbers, List<String> emails) {
         this.name = name;
         this.numbers = numbers;
-        this.emails = emails;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<String> getNumbers() {
-        return numbers;
-    }
-
-    public void setNumbers(List<String> numbers) {
-        this.numbers = numbers;
-    }
-
-    public List<String> getEmails() {
-        return emails;
-    }
-
-    public void setEmails(List<String> emails) {
         this.emails = emails;
     }
 
@@ -68,12 +49,17 @@ public class Contact {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "name='" + name + '\'' +
-                ", numbers=" + numbers +
-                ", emails=" + emails +
-                '}';
+
+    public boolean isIncluded(String input) {
+        if (this.getName().contains(input)) {
+            return true;
+        }
+        if (this.getEmails().stream().anyMatch( e ->  e.contains(input))) {
+            return true;
+        }
+        if (this.getNumbers().stream().anyMatch(n -> n.contains(input))) {
+            return true;
+        }
+        return false;
     }
 }

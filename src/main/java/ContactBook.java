@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ContactBook {
 
@@ -34,17 +35,8 @@ public class ContactBook {
     }
 
     public List<Contact> search(String input) {
-        List<Contact> result = new ArrayList<>();
-
-        for (Contact contact: contacts) {
-            if (contact.getName().contains(input) ) {
-                result.add(contact);
-            } else if (contact.getEmails().stream().anyMatch( e ->  e.contains(input))) {
-                result.add(contact);
-            } else if (contact.getNumbers().stream().anyMatch(n -> n.contains(input))) {
-                result.add(contact);
-            }
-        }
-        return result;
+        return contacts.stream()
+                .filter(contact -> contact.isIncluded(input))
+                .collect(Collectors.toList());
     }
 }
