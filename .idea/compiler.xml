@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ContactBook" />
+        <module name="contact_book" />
       </profile>
     </annotationProcessing>
   </component>
